@@ -10,8 +10,8 @@ let movieMap = new Map([
   [9, {id: 9, rating: 3.5, relatedMovies: [4, 5, 7]}]
 ])
 
-let recommendations = (movieId, minRating, numMovies, movieMap, visited = new Map()) => {
-  visited.set(movieId, true);
+let recommendations = (movieId, minRating, numMovies, movieMap, visited = new Set()) => {
+  visited.add(movieId);
 
   return movieMap.get(movieId).relatedMovies.reduce((acc, id) =>
     !visited.has(id) && movieMap.get(id).rating >= minRating
@@ -23,4 +23,4 @@ let recommendations = (movieId, minRating, numMovies, movieMap, visited = new Ma
   .splice(0, numMovies)
 }
 
-console.log(recommendations(1, 2, 5, movieMap))
+console.log(recommendations(1, 2, 3, movieMap))
