@@ -10,17 +10,13 @@ let movieMap = new Map([
   [9, {id: 9, rating: 3.5, relatedMovies: [4, 5, 7]}]
 ])
 
-let recommendations = (movieId, minRating, numMovies, movieMap, visited = new Set()) => {
-  visited.add(movieId);
-
-  return movieMap.get(movieId).relatedMovies.reduce((acc, id) =>
-    !visited.has(id) && movieMap.get(id).rating >= minRating
-    ? acc.concat(recommendations(id, minRating, numMovies, movieMap, visited))
-    : acc
-  , [])
-  .concat([{id: movieId, rating: movieMap.get(movieId).rating}])
-  .sort((a, b) => b.rating - a.rating)
-  .splice(0, numMovies)
-}
+let recommendations = (movieId, minRating, numMovies, movieMap, visited = new Set()) =>
+  movieMap.get(movieId).relatedMovies.reduce((acc, id) =>
+    !visited.has(id) && id != movieId && movieMap.get(id).rating >= minRating
+    ? acc.concat(recommendations(id, minRating, numMovies, movieMap, visited.add(movieId)))
+    : acc, [])
+    .concat([{id: movieId, rating: movieMap.get(movieId).rating}])
+    .sort((a, b) => b.rating - a.rating)
+    .splice(0, numMovies)
 
 console.log(recommendations(1, 2, 3, movieMap))
