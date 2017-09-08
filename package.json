@@ -1,0 +1,28 @@
+{
+  "name": "funkjs",
+  "version": "1.0.0",
+  "description": "Testbed for functional javascript snippets",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dansergiu/funkjs.git"
+  },
+  "keywords": [
+    "functional",
+    "programming",
+    "declarative",
+    "javascript"
+  ],
+  "author": "DanTM",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dansergiu/funkjs/issues"
+  },
+  "homepage": "https://github.com/dansergiu/funkjs#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
